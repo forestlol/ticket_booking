@@ -12,86 +12,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <AnchorPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
-         <children>
-            <ScrollPane fitToWidth="true" minViewportHeight="768.0" minViewportWidth="1024.0" prefHeight="1516.0" prefWidth="1024.0" snapToPixel="false" style="-fx-background-color: black;">
-               <content>
-                  <AnchorPane prefHeight="1536.0" prefWidth="1024.0" style="-fx-background-color: black;">
-                     <children>
-                        <ImageView fitHeight="512.0" fitWidth="1000.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@image/Concert_2.jpg" />
-                           </image>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                        </ImageView>
-                        <Label layoutX="60.0" layoutY="328.0" text="Hozier" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="36.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="60.0" layoutY="381.0" text="Unreal Unearth tour 2024" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Text fill="WHITE" layoutX="60.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Experience the magic with Hozier and his new album Unreal Unearth live!&#10;Get tickets while they last&#10;">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                        <Button layoutX="865.0" layoutY="395.0" mnemonicParsing="false" style="-fx-background-color: null; -fx-border-color: white;" text="View" textFill="WHITE">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets bottom="8.0" left="32.0" right="32.0" top="8.0" />
-                           </padding>
-                        </Button>
-                        <TextField layoutX="128.0" layoutY="488.0" prefHeight="48.0" prefWidth="768.0" />
-                        <AnchorPane prefHeight="10.0" prefWidth="1024.0">
-                           <children>
-                              <Separator prefWidth="1024.0" />
-                           </children>
-                        </AnchorPane>
-                        <Button layoutX="788.0" layoutY="492.0" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: blue;" text="Search" textFill="WHITE">
-                           <padding>
-                              <Insets left="24.0" right="24.0" />
-                           </padding>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Label layoutX="143.0" layoutY="504.0" opacity="0.3" text="Search For Your Concerts">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <AnchorPane layoutX="64.0" layoutY="593.0" prefHeight="512.0" prefWidth="896.0" style="-fx-background-color: white;">
-                           <children>
-                              <Label layoutX="343.0" layoutY="14.0" text="Upcoming Concerts">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </ScrollPane>
-         </children>
-      </AnchorPane>
-   </center>
    <top>
       <AnchorPane prefWidth="1024.0" BorderPane.alignment="CENTER">
          <children>
@@ -139,4 +64,143 @@
          </children>
       </AnchorPane>
    </top>
+   <bottom>
+      <AnchorPane prefHeight="96.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="52.0" layoutY="28.0" text="* Ticket prices and availability are subject to change" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="48.0" text="© 2024 Ticket Booking App" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minViewportHeight="768.0" minViewportWidth="1024.0" prefHeight="1516.0" prefWidth="1024.0" snapToPixel="false" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane prefHeight="1536.0" prefWidth="1024.0" style="-fx-background-color: black;">
+               <children>
+                  <ImageView fitHeight="512.0" fitWidth="1000.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@image/Concert_2.jpg" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <Label layoutX="60.0" layoutY="328.0" text="Hozier" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="60.0" layoutY="381.0" text="Unreal Unearth tour 2024" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Text fill="WHITE" layoutX="60.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Experience the magic with Hozier and his new album Unreal Unearth live!&#10;Get tickets while they last&#10;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="865.0" layoutY="395.0" mnemonicParsing="false" style="-fx-background-color: null; -fx-border-color: white;" text="View" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="8.0" left="32.0" right="32.0" top="8.0" />
+                     </padding>
+                  </Button>
+                  <TextField layoutX="128.0" layoutY="488.0" prefHeight="48.0" prefWidth="768.0" promptText="Search for your concerts" />
+                  <AnchorPane prefHeight="10.0" prefWidth="1024.0">
+                     <children>
+                        <Separator prefWidth="1024.0" />
+                     </children>
+                  </AnchorPane>
+                  <Button layoutX="788.0" layoutY="492.0" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: blue;" text="Search" textFill="WHITE">
+                     <padding>
+                        <Insets left="24.0" right="24.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane layoutX="64.0" layoutY="593.0" prefHeight="760.0" prefWidth="896.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label layoutX="343.0" layoutY="14.0" text="Upcoming Concerts">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Pane layoutX="55.0" layoutY="81.0" prefHeight="304.0" prefWidth="384.0">
+                           <children>
+                              <ImageView fitHeight="256.0" fitWidth="384.0" layoutX="21.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 15, 0, 0, 0);;">
+                                 <image>
+                                    <Image url="@image/436%20326_1.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="24.0" layoutY="271.0" text="Esplanade Presents | Mosaic Music SeriesVansire (USA)">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="457.0" layoutY="81.0" prefHeight="304.0" prefWidth="384.0">
+                           <children>
+                              <ImageView fitHeight="256.0" fitWidth="384.0" layoutX="21.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 15, 0, 0, 0);;">
+                                 <image>
+                                    <Image url="@image/436x326%20TRO.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="24.0" layoutY="271.0" prefHeight="20.0" prefWidth="339.0" text="Esplanade Presents | Mosaic Music SeriesThe Rare Occasions (USA)">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="55.0" layoutY="415.0" prefHeight="304.0" prefWidth="384.0">
+                           <children>
+                              <ImageView fitHeight="256.0" fitWidth="384.0" layoutX="21.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 15, 0, 0, 0);;">
+                                 <image>
+                                    <Image url="@image/JessieM%20_SISTIC_436X326.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="54.0" layoutY="272.0" text="Jessie M. Dark Stories - The Debut Recital [G]">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="457.0" layoutY="415.0" prefHeight="304.0" prefWidth="384.0">
+                           <children>
+                              <ImageView fitHeight="256.0" fitWidth="384.0" layoutX="21.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 15, 0, 0, 0);;">
+                                 <image>
+                                    <Image url="@image/rach0324%20-%20436x326.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="55.0" layoutY="271.0" text="Rachmaninov's 24 Preludes • Andrey Gugnin">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
 </BorderPane>
