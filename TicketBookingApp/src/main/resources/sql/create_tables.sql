@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS EventManager (
 );
 
 -- TicketOfficer Subtype
-CREATE TABLE IF NOT EXISTS TicketOfficer (
+CREATE TABLE IF NOT EXISTS TicketingOfficer (
     userID INT PRIMARY KEY,
     FOREIGN KEY (userID) REFERENCES User(userID)
 );
@@ -47,11 +47,11 @@ CREATE TABLE IF NOT EXISTS Event (
 
 -- AuthorisedOfficers Associative Table
 CREATE TABLE IF NOT EXISTS AuthorisedOfficers (
-    ticketOfficerID INT NOT NULL,
+    ticketingOfficerID INT NOT NULL,
     eventID INT NOT NULL,
     timeStamp DATETIME NOT NULL,
-    PRIMARY KEY (ticketOfficerID, eventID),
-    FOREIGN KEY (ticketOfficerID) REFERENCES TicketOfficer(userID),
+    PRIMARY KEY (ticketingOfficerID, eventID),
+    FOREIGN KEY (ticketingOfficerID) REFERENCES TicketingOfficer(userID),
     FOREIGN KEY (eventID) REFERENCES Event(eventID)
 );
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS TicketOption (
     ticketOptionID INT PRIMARY KEY,
     eventID INT NOT NULL,
     optionName VARCHAR(30) NOT NULL,
-    priceMultiplier INT NOT NULL,
+    priceMultiplier DOUBLE NOT NULL,
     totalAvailable INT NOT NULL,
     FOREIGN KEY (eventID) REFERENCES Event(eventID)
 );
@@ -80,14 +80,15 @@ CREATE TABLE IF NOT EXISTS Booking (
     eventID INT NOT NULL,
     ticketOptionID INT NOT NULL,
     customerID INT NOT NULL,
-    ticketOfficerID INT NOT NULL,
+    ticketingOfficerID INT NOT NULL,
     numOfTickets INT NOT NULL,
     amountPaid DOUBLE NOT NULL,
     bookedTime DATETIME NOT NULL,
+    bookingStatus VARCHAR(30) NOT NULL,
     FOREIGN KEY (eventID) REFERENCES Event(eventID),
     FOREIGN KEY (ticketOptionID) REFERENCES TicketOption(ticketOptionID),
     FOREIGN KEY (customerID) REFERENCES Customer(userID),
-    FOREIGN KEY (ticketOfficerID) REFERENCES TicketOfficer(userID)
+    FOREIGN KEY (ticketingOfficerID) REFERENCES TicketingOfficer(userID)
 );
 
 -- Refund Table
@@ -95,6 +96,6 @@ CREATE TABLE IF NOT EXISTS Refund (
     refundID INT PRIMARY KEY AUTO_INCREMENT,
     bookingID INT NOT NULL,
     refundDate DATETIME NOT NULL,
-    refundStatus VARCHAR(30) NOT NULL,
+    refu VARCHAR(30) NOT NULL,
     FOREIGN KEY (bookingID) REFERENCES Booking(bookingID)
 );

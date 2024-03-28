@@ -10,21 +10,23 @@ public class Booking {
     private int bookingID;
     private int eventID;
     private int customerID;
-    private int ticketOfficerID;
+    private int ticketingOfficerID;
     private int ticketOptionID;
     private float amountPaid;
     private List<Ticket> tickets;
     private LocalDateTime bookedTime;
+    private String bookingStatus;
 
-    public Booking(int bookingID, int eventID, int customerID, int ticketOfficerID, int ticketOptionID, float amountPaid, List<Ticket> tickets, LocalDateTime bookedTime) {
+    public Booking(int bookingID, int eventID, int customerID, int ticketingOfficerID, int ticketOptionID, float amountPaid, List<Ticket> tickets, LocalDateTime bookedTime) {
         this.bookingID = bookingID;
         this.eventID = eventID;
         this.customerID = customerID;
-        this.ticketOfficerID = ticketOfficerID;
+        this.ticketingOfficerID = ticketingOfficerID;
         this.ticketOptionID = ticketOptionID;
         this.amountPaid = amountPaid;
         this.tickets = tickets;
-        this.bookingTime = bookingTime;
+        this.bookedTime = bookedTime;
+        this.bookingStatus = bookingStatus;
     }
 
     // Getters
@@ -40,8 +42,8 @@ public class Booking {
         return this.customerID;
     }
 
-    public int getTicketOfficerID() {
-        return this.ticketOfficerID;
+    public int getTicketingOfficerID() {
+        return this.ticketingOfficerID;
     }
 
     public int getTicketOptionID() {
@@ -60,6 +62,9 @@ public class Booking {
         return this.bookedTime;
     }
 
+    public String getBookingStatus() {
+        return this.bookingStatus;
+    }
 
     // Setters
     public void setBookingTime(LocalDateTime bookedTime) {
@@ -72,10 +77,11 @@ public class Booking {
         details.put("bookingID", this.bookingID);
         details.put("eventID", this.eventID);
         details.put("customerID", this.customerID);
-        details.put("ticketOfficerID", this.ticketOfficerID);
+        details.put("ticketingOfficerID", this.ticketingOfficerID);
         details.put("ticketOptionID", this.ticketOptionID);
         details.put("amountPaid", this.amountPaid);
         details.put("bookedTime", this.bookedTime);
+        details.put("bookingStatus", this.bookingStatus);
         return details;
     }
 }

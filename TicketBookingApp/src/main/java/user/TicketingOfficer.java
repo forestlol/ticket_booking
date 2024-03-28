@@ -12,6 +12,7 @@ public class TicketingOfficer extends User {
         this.ticketingEvents = ticketingEvents;
     }
 
+    // Creating new TicketingOfficer
     public TicketingOfficer(int id, String email, String password, String name, String type) {
         super(id, email, password, name, type);
         this.ticketingEvents = new ArrayList<>();

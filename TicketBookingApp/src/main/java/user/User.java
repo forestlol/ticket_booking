@@ -15,23 +15,19 @@ public abstract class User {
         this.type = type;
     }
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return this.id;
     }
 
-    // public String getPassword() {
-    //     return password;
-    // }
-
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getType() {
-        return type;
+        return this.type;
     }
 }

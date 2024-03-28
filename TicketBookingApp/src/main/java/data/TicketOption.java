@@ -11,7 +11,7 @@ public class TicketOption {
         this.ticketOptionID = ticketOptionID;
         this.eventID = eventID;
         this.optionName = optionName;
-        this.priceMultipler = priceMultipler;
+        this.priceMultiplier = priceMultiplier;
         this.totalAvailable = totalAvailable;
     }
 
@@ -27,8 +27,8 @@ public class TicketOption {
         return this.optionName;
     }
 
-    public int getPriceMultipler() {
-        return this.priceMultipler;
+    public int getPriceMultiplier() {
+        return this.priceMultiplier;
     }
 
     public int getTotalAvailable() {

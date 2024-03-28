@@ -2,10 +2,18 @@ package service;
 
 import user.EventManager;
 import data.Event;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class EventService {
+    private AccountService accountService;
     private DatabaseService databaseService;
     private BookingService bookingService;
 
@@ -14,64 +22,52 @@ public class EventService {
         this.bookingService = bookingService;
     }
 
-    // Get all events method
-    public List<Event> getEvents() {
+//    NEW CODE
+    /*
+    [CRUD]
+    createEvent(int eventManagerID, Map<String, Object> details)
+        - details = Event Details
+    getAllEvents()
+    updateEvent(int eventID, int eventManagerID, Map<String, Object> details)
+        - details = Event Details
+    cancelEvent(int eventManagerID, int eventID)
+        1. Get all bookingID that are tagged with this eventID
+        2. Create Refund class, add in bookingID, timestamp, and status
+        3. All user accountBalance will add amountPaid retrieved from bookingID
+        4. Remove all affected bookings in database
+        5. Remove this event in database
+    getManagedEvents(int eventManagerID)
+        - You get your own events
+    */
+
+    public Event createEvent(Map<String, Object> details) {
+        return databaseService.createEvent(accountService.getCurrentUser().getID(), Map<String, Object > details);
+    }
+
+    public Event getEvent(int eventID)
+    {
+        return databaseService.getEvent(eventID);
+    }
+
+    public List<Event> getAllEvents() {
         return databaseService.getAllEvents();
     }
 
-    // Get events managed by a specific EventManager
-    public List<Event> getMyManagedEvents(EventManager eventManager) {
-        return databaseService.getEventsManagedBy(eventManager);
+    // For Event Managers
+    public List<Event> getManagedEvents() {
+        return databaseService.getManagedEvents(accountService.getCurrentUser().getID());
     }
 
-    // Cancel an event method
-    public String cancelEvent(EventManager eventManager, Event event) {
-        if (eventManagerCanManageEvent(eventManager, event)) {
-            // Cancel the event and handle related operations
-            return "Event canceled successfully.";
-        } else {
-            return "Permission denied. Event not canceled.";
-        }
+    // For Ticketing Officers
+    public List<Event> getAuthorisedEvents() {
+        return databaseService.getAuthorisedEvents(accountService.getCurrentUser().getID());
     }
 
-    // Update event details method
-    public Event updateEvent(Event event, EventManager eventManager, Map<String, Object> details) {
-        if (eventManagerCanManageEvent(eventManager, event)) {
-            // Update event details and handle related operations
-            return databaseService.updateEvent(event, details);
-        } else {
-            return null; // Permission denied. Event not updated.
-        }
+    public Event updateEvent(int eventID, Map<String, Object> details) {
+        return databaseService.updateEvent( int eventID, accountService.getCurrentUser().getID(), Map<String, Object > details)
     }
 
-    // Create a new event method
-    public Event createEvent(EventManager eventManager, Map<String, Object> details) {
-        // Assume event creation involves handling details and permissions
-//        if (eventManagerCanCreateEvent(eventManager)) {
-        Event newEvent = databaseService.createEvent(details);
-        return newEvent;
-//        } else {
-//            return null; // Permission denied. Event not created.
-//        }
+    public boolean cancelEvent(int eventID) {
+        return databaseService.cancelEvent(accountService.getCurrentUser().getID(), eventID);
     }
-
-    // Add officers to an event method
-    public Map<String, Boolean> addOfficer(EventManager eventManager, List<String> userIds) {
-        // Assume adding officers involves permissions and handling related operations
-        return databaseService.addOfficersToEvent(eventManager, userIds);
-    }
-
-    // Helper method to check if EventManager can manage the event
-    private boolean eventManagerCanManageEvent(EventManager eventManager, Event event) {
-        // Implementation logic to check if the EventManager has the necessary permissions
-        // You may customize this based on your application's requirements
-        return event.getManager().equals(eventManager);
-    }
-
-    // Helper method to check if EventManager can create a new event
-//    private boolean eventManagerCanCreateEvent(EventManager eventManager) {
-//        // Implementation logic to check if the EventManager has the necessary permissions
-//        // You may customize this based on your application's requirements
-//        return true; // For simplicity, assuming all EventManagers can create events
-//    }
 }

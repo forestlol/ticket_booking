@@ -19,7 +19,7 @@ public class Event {
     private double ticketCancellationFee;
     private List<Ticket> attendance;
     private boolean isCancelled;
-    private List<int> ticketOfficersID;
+    private List<int> ticketingOfficersID;
     private List<int> ticketOptionIDs;
 
     public Event(
@@ -36,7 +36,7 @@ public class Event {
         int totalSlots,
         double ticketCancellationFee,
         boolean isCancelled,
-        List<Integer> ticketOfficerIDs,
+        List<Integer> ticketingOfficerIDs,
         List<Integer> ticketOptionIDs) {
             this.eventID = eventID;
             this.eventManagerID = eventManagerID;
@@ -51,7 +51,7 @@ public class Event {
             this.totalSlots = totalSlots;
             this.ticketCancellationFee = ticketCancellationFee;
             this.isCancelled = isCancelled;
-            this.ticketOfficers = ticketOfficerIDs;
+            this.ticketingOfficers = ticketingOfficerIDs;
             this.ticketOptions = ticketOptionIDs;
     }
 
@@ -112,8 +112,8 @@ public class Event {
         return this.isCancelled;
     }
 
-    public List<Integer> getTicketOfficerIDs() {
-        return this.ticketOfficerIDs;
+    public List<Integer> getTicketingOfficerIDs() {
+        return this.ticketingOfficerIDs;
     }
 
     public List<Integer> getTicketOptionIDs() {

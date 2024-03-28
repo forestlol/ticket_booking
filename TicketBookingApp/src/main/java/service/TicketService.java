@@ -2,6 +2,11 @@ package service;
 
 import user.User;
 import data.Ticket;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,5 +52,19 @@ public class TicketService {
             return true;
         }
         return false;
+    }
+
+    private List<Integer> getTicketOptionsByEvent(int eventID) {
+        List<Integer> ticketOptionIDs = new ArrayList<>();
+        String query = "SELECT ticketOptionID FROM TicketOption WHERE eventID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, eventID);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    ticketOptionIDs.add(rs.getInt("ticketOptionID"));
+                }
+            }
+        }
+        return ticketOptionIDs;
     }
 }

@@ -29,7 +29,7 @@ public class Refund {
         return this.refundDate;
     }
 
-    public String getRefundStatus()    {
+    public String getRefundStatus() {
         return this.refundStatus;
     }
 
