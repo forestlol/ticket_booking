@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import java.sql.SQLException;
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Map;
@@ -19,23 +20,19 @@ public class StatisticsService {
         this.databaseService = databaseService;
     }
 
-    public Map<Integer, Integer> getTotalTicketsSold(List<Integer> eventIDs)
-    {
+    public Map<Integer, Integer> getTotalTicketsSold(List<Integer> eventIDs) throws SQLException {
         return this.databaseService.getTotalTicketsSold(eventIDs);
     }
 
-    public Map<Integer, Double> getRevenue(List<Integer> eventIDs)
-    {
+    public Map<Integer, Double> getRevenue(List<Integer> eventIDs) throws SQLException {
         return this.databaseService.getRevenue(eventIDs);
     }
 
-    public Map<Integer, Double> getAttendanceRate(List<Integer> eventIDs)
-    {
+    public Map<Integer, Double> getAttendanceRate(List<Integer> eventIDs) throws SQLException {
         return this.databaseService.getAttendanceRate(eventIDs);
     }
 
-    public Map<Integer, Map<String, Integer>> getTicketTypeBreakdown(List<Integer> eventIDs)
-    {
+    public Map<Integer, Map<String, Integer>> getTicketTypeBreakdown(List<Integer> eventIDs) throws SQLException {
         return this.databaseService.getTicketTypeBreakdown(eventIDs);
     }
 

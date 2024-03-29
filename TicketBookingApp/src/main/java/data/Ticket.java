@@ -1,6 +1,7 @@
 package data;
 
 import java.util.Map;
+import java.util.HashMap;
 
 public class Ticket {
     private int ticketID;
@@ -48,5 +49,5 @@ public class Ticket {
 
         return ticketDetails;
     }
-    
+
 }

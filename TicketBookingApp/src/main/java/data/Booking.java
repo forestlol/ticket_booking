@@ -3,8 +3,7 @@ package data;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-
-import user.*;
+import java.util.HashMap;
 
 public class Booking {
     private int bookingID;
@@ -12,12 +11,12 @@ public class Booking {
     private int customerID;
     private int ticketingOfficerID;
     private int ticketOptionID;
-    private float amountPaid;
+    private double amountPaid;
     private List<Ticket> tickets;
     private LocalDateTime bookedTime;
     private String bookingStatus;
 
-    public Booking(int bookingID, int eventID, int customerID, int ticketingOfficerID, int ticketOptionID, float amountPaid, List<Ticket> tickets, LocalDateTime bookedTime) {
+    public Booking(int bookingID, int eventID, int customerID, int ticketingOfficerID, int ticketOptionID, double amountPaid, List<Ticket> tickets, LocalDateTime bookedTime, String bookingStatus) {
         this.bookingID = bookingID;
         this.eventID = eventID;
         this.customerID = customerID;
@@ -50,7 +49,7 @@ public class Booking {
         return this.ticketOptionID;
     }
 
-    public float getAmountPaid() {
+    public double getAmountPaid() {
         return this.amountPaid;
     }
 

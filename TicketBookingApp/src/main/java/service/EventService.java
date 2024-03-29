@@ -36,7 +36,7 @@ public class EventService {
     }
 
     public Event updateEvent(int eventID, Map<String, Object> details) {
-        return databaseService.updateEvent(eventID, AccountService.getCurrentUser().getID(), details)
+        return databaseService.updateEvent(eventID, AccountService.getCurrentUser().getID(), details);
     }
 
     public boolean cancelEvent(int eventID) {

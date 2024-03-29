@@ -2,6 +2,7 @@ package service;
 
 import user.User;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -35,12 +36,12 @@ public class AccountService {
     }
 
     // Create user
-    public User createUser(String email, String password, String name, String type, double accountBalance) {
+    public boolean createUser(String email, String password, String name, String type, double accountBalance) {
         return this.databaseService.createUser(email, password, name, type, accountBalance);
     }
 
     // Add authorised officers [Event Manager]
-    public Map<String, Boolean> addAuthorisedOfficer(int eventID, List<Integer> userIDs) {
+    public Map<Integer, Boolean> addAuthorisedOfficer(int eventID, List<Integer> userIDs) {
         return this.databaseService.addAuthorisedOfficer(currentUser.getID(), eventID, userIDs);
     }
 }

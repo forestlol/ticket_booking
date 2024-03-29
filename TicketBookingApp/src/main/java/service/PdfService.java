@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import data.Ticket;
 
-public class PDFService {
+public class PdfService {
 
     public void createEventDetailsPDF(String outputPath, String eventName, String eventDescription, String venue,
                                       LocalDateTime startTime, String ticketOptionName, double amountPaid, List<Ticket> tickets) {
@@ -74,7 +74,7 @@ public class PDFService {
                 for (Ticket ticket : tickets) {
                     contentStream.beginText();
                     contentStream.newLineAtOffset(100, yOffset);
-                    contentStream.showText("- Ticket ID: " + ticket.getTicketID() + " | Guest: " + (ticket.isGuest() ? "Yes" : "No"));
+                    contentStream.showText("- Ticket ID: " + ticket.getTicketID() + " | Guest: " + (ticket.getIsGuest() ? "Yes" : "No"));
                     contentStream.endText();
                     yOffset -= 15;
                 }

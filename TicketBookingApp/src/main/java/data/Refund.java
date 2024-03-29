@@ -2,6 +2,7 @@ package data;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.HashMap;
 
 public class Refund {
     private int refundID;

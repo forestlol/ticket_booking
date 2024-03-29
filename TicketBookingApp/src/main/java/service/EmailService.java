@@ -2,6 +2,10 @@ package service;
 
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.activation.DataHandler;
+import java.io.File;
 import java.util.Properties;
 
 public class EmailService {

@@ -2,6 +2,7 @@ package service;
 
 import data.Booking;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class BookingService {
@@ -11,8 +12,7 @@ public class BookingService {
         this.databaseService = databaseService;
     }
 
-    public Booking createBooking(int eventID, int ticketOptionID, int ticketingOfficerID, int numOfTickets)
-    {
+    public Booking createBooking(int eventID, int ticketOptionID, int ticketingOfficerID, int numOfTickets) throws SQLException {
         return this.databaseService.createBooking(eventID, ticketOptionID, AccountService.getCurrentUser().getID(), ticketingOfficerID, numOfTickets);
     }
 

@@ -4,10 +4,10 @@ public class TicketOption {
     private int ticketOptionID;
     private int eventID;
     private String optionName;
-    private int priceMultiplier;
+    private double priceMultiplier;
     private int totalAvailable;
 
-    public TicketOption(int ticketOptionID, int eventID, String optionName, int priceMultiplier, int totalAvailable) {
+    public TicketOption(int ticketOptionID, int eventID, String optionName, double priceMultiplier, int totalAvailable) {
         this.ticketOptionID = ticketOptionID;
         this.eventID = eventID;
         this.optionName = optionName;
@@ -27,7 +27,7 @@ public class TicketOption {
         return this.optionName;
     }
 
-    public int getPriceMultiplier() {
+    public double getPriceMultiplier() {
         return this.priceMultiplier;
     }
 

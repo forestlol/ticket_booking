@@ -2,6 +2,7 @@ package data;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Event {
@@ -19,8 +20,6 @@ public class Event {
     private double ticketCancellationFee;
     private List<Ticket> attendance;
     private boolean isCancelled;
-    private List<int> ticketingOfficersID;
-    private List<int> ticketOptionIDs;
 
     public Event(
         int eventID,
@@ -31,13 +30,11 @@ public class Event {
         String venue,
         LocalDateTime startTime,
         int duration,
-        float revenue,
+        double revenue,
         int currSlots,
         int totalSlots,
         double ticketCancellationFee,
-        boolean isCancelled,
-        List<Integer> ticketingOfficerIDs,
-        List<Integer> ticketOptionIDs) {
+        boolean isCancelled) {
             this.eventID = eventID;
             this.eventManagerID = eventManagerID;
             this.basePrice = basePrice;
@@ -51,8 +48,6 @@ public class Event {
             this.totalSlots = totalSlots;
             this.ticketCancellationFee = ticketCancellationFee;
             this.isCancelled = isCancelled;
-            this.ticketingOfficers = ticketingOfficerIDs;
-            this.ticketOptions = ticketOptionIDs;
     }
 
     // Getters
@@ -111,15 +106,6 @@ public class Event {
     public boolean isCancelled() {
         return this.isCancelled;
     }
-
-    public List<Integer> getTicketingOfficerIDs() {
-        return this.ticketingOfficerIDs;
-    }
-
-    public List<Integer> getTicketOptionIDs() {
-        return this.ticketOptionIDs;
-    }
-
 
     // Setters
 
