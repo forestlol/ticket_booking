@@ -1,51 +1,67 @@
 package service;
 
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
+
 public class EmailService {
-    private String username;
-    private String password;
-    private BookingService bookingService;
-    private PDFService pdfService;
-    private QRCodeService qrCodeService;
+    private String username = "oopg1t7.is442@gmail.com";
+    private String password = "p@ssword_is442";
 
-    public EmailService(String username, String password, BookingService bookingService, PDFService pdfService, QRCodeService qrCodeService) {
-        this.username = username;
-        this.password = password;
-        this.bookingService = bookingService;
-        this.pdfService = pdfService;
-        this.qrCodeService = qrCodeService;
-    }
+    public boolean sendEmail(String toEmail, String subject, String htmlContent, String pdfFilePath, int numOfTickets) {
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
 
-    // Send an email with HTML content method
-    public boolean sendEmail(String email, String html) {
-        // Implement email sending logic using the provided email, HTML content, and credentials
-        // Return true if the email is sent successfully, false otherwise
+        // Get the Session object
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
 
-        // Example: Sending email with HTML content
-        boolean emailSent = sendEmailUsingSMTP(email, html);
+        try {
+            // Create a default MimeMessage object
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+            message.setSubject(subject);
+            String enhancedHtmlContent = htmlContent + "<br><p>This QR code represents " + numOfTickets + " ticket(s).</p>";
 
-        // If email is sent successfully, create PDF and QR code
-        if (emailSent) {
-            // Assume bookingService provides necessary information for PDF creation
-            String bookingDetails = bookingService.getBookingDetailsForEmail(email);
+            // Create a multipar message
+            Multipart multipart = new MimeMultipart();
 
-            // Create PDF and get the file path or URL
-            String pdfFilePath = pdfService.createPDF(bookingDetails);
+            String basePath = System.getProperty("user.dir"); // Get the user working directory
+            String qrCodeFilePath = basePath + "/image/qrcode.png"; // Path to the QR Code image
 
-            // Create QR code and get the file path or URL
-            String qrCodeFilePath = qrCodeService.createQRCode(pdfFilePath);
+            // Part two is attachments
+            MimeBodyPart pdfAttachment = new MimeBodyPart();
+            DataSource source = new FileDataSource(pdfFilePath);
+            pdfAttachment.setDataHandler(new DataHandler(source));
+            pdfAttachment.setFileName(new File(pdfFilePath).getName());
 
-            // Attach PDF and QR code to the email (implementation not shown)
+            MimeBodyPart qrAttachment = new MimeBodyPart();
+            qrAttachment.attachFile(qrCodeFilePath);
+            multipart.addBodyPart(qrAttachment);
 
+            // Part three is setting the HTML content
+            BodyPart htmlBodyPart = new MimeBodyPart();
+            htmlBodyPart.setContent(enhancedHtmlContent, "text/html");
+            multipart.addBodyPart(htmlBodyPart);
+
+            // Send the complete message parts
+            message.setContent(multipart);
+            // Send message
+            Transport.send(message);
+
+            System.out.println("Sent message successfully....");
             return true;
-        } else {
+        } catch (MessagingException | java.io.IOException e) {
+            e.printStackTrace();
             return false;
         }
-    }
-
-    // Example: Sending email using SMTP (you may replace this with your actual email sending logic)
-    private boolean sendEmailUsingSMTP(String email, String html) {
-        // Implement SMTP email sending logic here
-        // Return true if the email is sent successfully, false otherwise
-        return true; // Placeholder for demonstration purposes
     }
 }

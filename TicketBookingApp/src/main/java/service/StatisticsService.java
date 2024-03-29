@@ -1,50 +1,67 @@
 package service;
 
-import java.util.HashMap;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import java.util.stream.Collectors;
+import java.util.List;
 import java.util.Map;
 
 public class StatisticsService {
-    private BookingService bookingService;
+    private DatabaseService databaseService;
 
-    public StatisticsService(BookingService bookingService) {
-        this.bookingService = bookingService;
+    public StatisticsService(DatabaseService databaseService) {
+        this.databaseService = databaseService;
     }
 
-    // Generate a report for a specific type of statistics related to an event
-    public Map<String, Double> generateReport(String type, Event event) {
-        Map<String, Double> report = new HashMap<>();
+    public Map<Integer, Integer> getTotalTicketsSold(List<Integer> eventIDs)
+    {
+        return this.databaseService.getTotalTicketsSold(eventIDs);
+    }
 
-        switch (type.toLowerCase()) {
-            case "attendance":
-                int totalBookings = bookingService.getTotalBookingsForEvent(event);
-                int totalGuests = bookingService.getTotalGuestsForEvent(event);
-                double attendancePercentage = calculateAttendancePercentage(totalBookings, totalGuests);
-                report.put("Attendance Percentage", attendancePercentage);
-                break;
+    public Map<Integer, Double> getRevenue(List<Integer> eventIDs)
+    {
+        return this.databaseService.getRevenue(eventIDs);
+    }
 
-            // Add more cases for other types of statistics as needed
+    public Map<Integer, Double> getAttendanceRate(List<Integer> eventIDs)
+    {
+        return this.databaseService.getAttendanceRate(eventIDs);
+    }
 
-            default:
-                // Handle unknown statistic type
-                System.out.println("Unknown statistic type");
+    public Map<Integer, Map<String, Integer>> getTicketTypeBreakdown(List<Integer> eventIDs)
+    {
+        return this.databaseService.getTicketTypeBreakdown(eventIDs);
+    }
+
+    public void exportDataToCSV(List<Integer> eventIDs, String outputPath) throws IOException, SQLException {
+        Map<Integer, Integer> ticketsSold = getTotalTicketsSold(eventIDs);
+        Map<Integer, Double> revenue = getRevenue(eventIDs);
+        Map<Integer, Double> attendanceRates = getAttendanceRate(eventIDs);
+        Map<Integer, Map<String, Integer>> ticketTypeBreakdown = getTicketTypeBreakdown(eventIDs);
+
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(outputPath));
+             CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("Event ID", "Tickets Sold", "Revenue", "Attendance Rate", "Ticket Type Breakdown"))) {
+
+            for (Integer eventID : eventIDs) {
+                int tickets = ticketsSold.getOrDefault(eventID, 0);
+                double rev = revenue.getOrDefault(eventID, 0.0);
+                double attendanceRate = attendanceRates.getOrDefault(eventID, 0.0);
+                Map<String, Integer> typeBreakdown = ticketTypeBreakdown.get(eventID);
+                String typeBreakdownStr = typeBreakdown.entrySet().stream()
+                        .map(e -> e.getKey() + ": " + e.getValue())
+                        .collect(Collectors.joining(", "));
+
+                // Print each record to CSV
+                csvPrinter.printRecord(eventID, tickets, rev, String.format("%.2f%%", attendanceRate * 100), typeBreakdownStr);
+            }
+
+            csvPrinter.flush();
         }
-
-        return report;
-    }
-
-    // Export data for a specific type related to an event
-    public boolean exportData(String type, Event event) {
-        // Assume exporting data involves writing to a file or external system
-        // You may implement this based on your application's requirements
-        // Return true if the export is successful, false otherwise
-        return true;
-    }
-
-    // Helper method to calculate attendance percentage
-    private double calculateAttendancePercentage(int totalBookings, int totalGuests) {
-        if (totalBookings == 0) {
-            return 0.0; // Avoid division by zero
-        }
-        return (double) totalGuests / totalBookings * 100;
     }
 }

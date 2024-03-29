@@ -96,6 +96,6 @@ CREATE TABLE IF NOT EXISTS Refund (
     refundID INT PRIMARY KEY AUTO_INCREMENT,
     bookingID INT NOT NULL,
     refundDate DATETIME NOT NULL,
-    refu VARCHAR(30) NOT NULL,
+    refundStatus VARCHAR(30) NOT NULL,
     FOREIGN KEY (bookingID) REFERENCES Booking(bookingID)
 );
