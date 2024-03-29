@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS TicketingOfficer (
 
 -- Event Table
 CREATE TABLE IF NOT EXISTS Event (
-    eventID INT PRIMARY KEY,
+    eventID INT PRIMARY KEY AUTO_INCREMENT,
     eventManagerID INT NOT NULL,
     basePrice DOUBLE NOT NULL,
     eventName VARCHAR(30) NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS AuthorisedOfficers (
 
 -- TicketOption Table
 CREATE TABLE IF NOT EXISTS TicketOption (
-    ticketOptionID INT PRIMARY KEY,
+    ticketOptionID INT PRIMARY KEY AUTO_INCREMENT,
     eventID INT NOT NULL,
     optionName VARCHAR(30) NOT NULL,
     priceMultiplier DOUBLE NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS TicketOption (
 
 -- Ticket Table
 CREATE TABLE IF NOT EXISTS Ticket (
-    ticketID INT PRIMARY KEY,
+    ticketID INT PRIMARY KEY AUTO_INCREMENT,
     bookingID INT NOT NULL,
     isGuest TINYINT NOT NULL,
     attended TINYINT NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS Ticket (
 
 -- Booking Table
 CREATE TABLE IF NOT EXISTS Booking (
-    bookingID INT PRIMARY KEY,
+    bookingID INT PRIMARY KEY AUTO_INCREMENT,
     eventID INT NOT NULL,
     ticketOptionID INT NOT NULL,
     customerID INT NOT NULL,
