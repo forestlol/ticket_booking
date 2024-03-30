@@ -34,8 +34,10 @@ public class DatabaseService {
 
     // Method to establish a database connection
     public void connect() throws SQLException {
-        String url = "jdbc:mysql://" + this.host + "/" + this.name;
-        this.connection = DriverManager.getConnection(url, this.username, this.password);
+        if(this.connection == null || this.connection.isClosed()) {
+            String url = "jdbc:mysql://" + this.host + "/" + this.name;
+            this.connection = DriverManager.getConnection(url, this.username, this.password);
+        }
     }
 
     // Method to close the database connection
@@ -205,46 +207,70 @@ public class DatabaseService {
         }
     }
 
-    public Map<Integer, Boolean> addAuthorisedOfficer(int eventManagerID, int eventID, List<Integer> userIDs) {
+    public Map<Integer, Boolean> addAuthorisedOfficer(int eventManagerID, int eventID, List<Integer> userIDs) throws SQLException {
 
         HashMap<Integer, Boolean> results = new HashMap<>();
 
-        List<Event> managedEvents = getManagedEvents(eventManagerID);
-        for (Event event : managedEvents) {
-            System.out.println("Event ID: " + event.getEventID());
-            System.out.println("Base Price: " + event.getBasePrice());
-            System.out.println("Event Name: " + event.getEventName());
-        }
-        boolean isEventManagedByEventManager = managedEvents.stream()
-                .anyMatch(event -> event.getEventID() == eventID);
-
-        // Check if the event manager is associated with the event
-        if (isEventManagedByEventManager) {
-            for (Integer userID : userIDs) {
-                boolean success = false;
-                // Check if the user is a ticketing officer before trying to add
-                TicketingOfficer officer = (TicketingOfficer) getUser(userID);
-                if (officer != null) {
-                    String query = "INSERT INTO AuthorisedOfficers (eventID, ticketingOfficerID, timeStamp) VALUES (?, ?, NOW())";
-
-                    try (PreparedStatement pstmt = this.connection.prepareStatement(query)) {
-                        pstmt.setInt(1, eventID);
-                        pstmt.setInt(2, userID);
-
-                        int rowsAffected = pstmt.executeUpdate();
-                        success = rowsAffected > 0;
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-                results.put(userID, success);
+        boolean originalAutoCommit = this.connection.getAutoCommit();
+        try {
+            if (originalAutoCommit) {
+                this.connection.setAutoCommit(false);
             }
 
-            return results;
+            List<Event> managedEvents = getManagedEvents(eventManagerID);
+            boolean isEventManagedByEventManager = managedEvents.stream()
+                    .anyMatch(event -> event.getEventID() == eventID);
+
+            // Check if the event manager is associated with the event
+            if (isEventManagedByEventManager) {
+                for (Integer userID : userIDs) {
+                    boolean success = false;
+                    // Check if the user is a ticketing officer before trying to add
+                    TicketingOfficer officer = (TicketingOfficer) getUser(userID);
+                    if (officer != null) {
+                        if (this.connection == null || this.connection.isClosed()) {
+                            this.connect();
+                        }
+                        String query = "INSERT INTO AuthorisedOfficers (eventID, ticketingOfficerID, timeStamp) VALUES (?, ?, NOW())";
+
+                        try (PreparedStatement pstmt = this.connection.prepareStatement(query)) {
+                            pstmt.setInt(1, eventID);
+                            pstmt.setInt(2, userID);
+
+                            int rowsAffected = pstmt.executeUpdate();
+                            success = rowsAffected > 0;
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    results.put(userID, success);
+                }
+                originalAutoCommit = this.connection.getAutoCommit();
+                if (!originalAutoCommit) {
+                    this.connection.commit();
+                }
+            } else {
+                throw new RuntimeException("Error adding officer to event: event manager not associated with event");
+            }
+        } catch (SQLException e) {
+            if (!originalAutoCommit) {
+                try {
+                    this.connection.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace(); // Handle rollback exception
+                }
+            }
+            e.printStackTrace();
+        } finally {
+            if (!originalAutoCommit) {
+                try {
+                    this.connection.setAutoCommit(true); // Restore original auto-commit state
+                } catch (SQLException e) {
+                    e.printStackTrace(); // Handle exception on resetting auto-commit
+                }
+            }
         }
-        else {
-            throw new RuntimeException("Error adding officer to event: event manager not associated with event");
-        }
+        return results;
     }
 
     // -----------------------------------------------------------

@@ -41,7 +41,7 @@ public class AccountService {
     }
 
     // Add authorised officers [Event Manager]
-    public Map<Integer, Boolean> addAuthorisedOfficer(int eventID, List<Integer> userIDs) {
+    public Map<Integer, Boolean> addAuthorisedOfficer(int eventID, List<Integer> userIDs) throws SQLException {
         return this.databaseService.addAuthorisedOfficer(currentUser.getID(), eventID, userIDs);
     }
 }
