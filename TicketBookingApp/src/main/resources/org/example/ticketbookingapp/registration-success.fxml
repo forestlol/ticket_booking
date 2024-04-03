@@ -11,7 +11,7 @@
             <Font size="24.0" />
         </font>
     </Label>
-    <Button onAction="#OpenLoginPage" style="-fx-background-color: #0B60B0;" text="Back to login" textFill="WHITE">
+    <Button onAction="#OpenLoginPage" onMouseClicked="#OpenLoginPage" style="-fx-background-color: #0B60B0;" text="Back to login" textFill="WHITE">
         <font>
             <Font size="18.0" />
         </font>
