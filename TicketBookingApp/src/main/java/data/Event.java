@@ -1,5 +1,7 @@
 package data;
 
+import javafx.scene.layout.VBox;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.HashMap;
@@ -20,6 +22,8 @@ public class Event {
     private double ticketCancellationFee;
     private List<Ticket> attendance;
     private boolean isCancelled;
+
+
 
     public Event(
         int eventID,
@@ -50,6 +54,12 @@ public class Event {
             this.isCancelled = isCancelled;
     }
 
+    @Override
+    public String toString() {
+        // Return a string representation of the event that you'd like to display in the ListView
+        return eventName + "\n" + eventDesc;
+    }
+
     // Getters
     public int getEventID() {
         return this.eventID;
@@ -68,7 +78,7 @@ public class Event {
     }
 
     public String getEventDesc() {
-        return this.eventName;
+        return this.eventDesc;
     }
 
     public String getVenue() {
@@ -150,6 +160,5 @@ public class Event {
         details.put("isCancelled", this.isCancelled);
 
         return details;
-
     }
 }

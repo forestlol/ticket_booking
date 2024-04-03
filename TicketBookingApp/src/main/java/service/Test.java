@@ -19,10 +19,10 @@ public class Test {
         System.out.println("Login successful: " + loginSuccess);
 
         // Test creating a new user
-        boolean createSuccess = accountService.createUser("officer02@gmail.com", "password", "T_Officer_1", "TicketingOfficer", 0.0);
+        boolean createSuccess = accountService.createUser("officer02@gmail.com", "password", "T_Officer_1", "TicketingOfficer");
         System.out.println("New user 1 created: " + createSuccess);
 
-        createSuccess = accountService.createUser("officer03@gmail.com", "password", "T_Officer_2", "TicketingOfficer", 0.0);
+        createSuccess = accountService.createUser("officer03@gmail.com", "password", "T_Officer_2", "TicketingOfficer");
         System.out.println("New user 2 created: " + createSuccess);
 
         Map<Integer, Boolean> result = accountService.addAuthorisedOfficer(1, newOfficerIDs);

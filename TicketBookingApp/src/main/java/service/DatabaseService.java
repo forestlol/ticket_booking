@@ -114,7 +114,7 @@ public class DatabaseService {
     // ACCOUNT DATABASE
 
     public User authenticateUser(String email, String password) {
-        String sql = "SELECT * FROM User WHERE email = ? AND password = ?";
+        String sql = "SELECT u.*, c.accountBalance FROM user u LEFT JOIN customer c ON u.userID = c.userID WHERE u.email = ? AND u.password = ?";
         try (PreparedStatement stmt = this.connection.prepareStatement(sql))
         {
             stmt.setString(1, email);
@@ -143,7 +143,7 @@ public class DatabaseService {
         return null;
     }
 
-    public boolean createUser(String email, String name, String password, String type, double accountBalance) {
+    public boolean createUser(String email, String name, String password, String type) {
         // Implement user creation logic and store user information in the database
         // Return the created User object
 

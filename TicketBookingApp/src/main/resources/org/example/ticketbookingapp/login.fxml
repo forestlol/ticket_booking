@@ -26,7 +26,7 @@
    <right>
       <AnchorPane prefHeight="768.0" prefWidth="512.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="usernameField" layoutX="180.0" layoutY="345.0" prefColumnCount="18" prefHeight="32.0" prefWidth="256.0" />
+            <TextField fx:id="usernameField" layoutX="178.0" layoutY="352.0" prefColumnCount="18" prefHeight="32.0" prefWidth="256.0" />
             <PasswordField fx:id="passwordField" layoutX="178.0" layoutY="411.0" prefColumnCount="18" prefHeight="32.0" prefWidth="256.0" />
             <Label layoutX="44.0" layoutY="345.0" text="Username" textFill="WHITE">
                <font>
@@ -38,7 +38,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="306.0" layoutY="471.0" mnemonicParsing="false" onMouseClicked="#PerformLogin" prefHeight="24.0" prefWidth="128.0" style="-fx-background-color: #0B60B0;" text="Login" textAlignment="CENTER" textFill="WHITE">
+            <Button layoutX="306.0" layoutY="471.0" mnemonicParsing="false" onAction="#PerformLogin" prefHeight="24.0" prefWidth="128.0" style="-fx-background-color: #0B60B0;" text="Login" textAlignment="CENTER" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -51,12 +51,12 @@
                   <Font name="Stencil" size="40.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" layoutX="120.0" layoutY="670.0" mnemonicParsing="false" style="-fx-background-color: #000000;" text="New user? Click here to join us!" textAlignment="CENTER" textFill="#64c9ff">
+            <Button alignment="CENTER" layoutX="120.0" layoutY="670.0" mnemonicParsing="false" onAction="#OpenRegistrationPage" style="-fx-background-color: #000000;" text="New user? Click here to join us!" textAlignment="CENTER" textFill="#64c9ff">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label fx:id="wrongInput" layoutX="143.0" layoutY="551.0" text="wrong username/ password!" textFill="RED">
+            <Label fx:id="wrongInput" layoutX="143.0" layoutY="551.0" text="wrong username/ password!" textFill="RED" visible="false">
                <font>
                   <Font size="18.0" />
                </font>

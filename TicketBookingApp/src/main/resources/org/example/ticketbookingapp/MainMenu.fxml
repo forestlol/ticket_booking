@@ -12,11 +12,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ticketbookingapp.MainMenuController">
    <top>
       <AnchorPane prefWidth="1024.0" BorderPane.alignment="CENTER">
          <children>
@@ -51,13 +53,10 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Label>
-                  <Button layoutX="648.0" layoutY="27.0" mnemonicParsing="false" style="-fx-border-width: 2; -fx-background-color: #000000; -fx-border-color: #FFFFFF; -fx-border-radius: 8;" text="Log Out" textFill="WHITE">
+                  <Button fx:id="logoutButton" layoutX="648.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleLogoutAction" style="-fx-border-width: 2; -fx-background-color: #000000; -fx-border-color: #FFFFFF;         -fx-border-radius: 8;" text="Log Out" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
                   </Button>
                </children>
             </AnchorPane>
@@ -80,12 +79,12 @@
          </children>
       </AnchorPane>
    </bottom>
-   <center>
+   <right>
       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minViewportHeight="768.0" minViewportWidth="1024.0" prefHeight="1516.0" prefWidth="1024.0" snapToPixel="false" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <content>
             <AnchorPane prefHeight="1536.0" prefWidth="1024.0" style="-fx-background-color: black;">
                <children>
-                  <ImageView fitHeight="512.0" fitWidth="1000.0" pickOnBounds="true">
+                  <ImageView fitHeight="512.0" fitWidth="1000.0" layoutX="-23.0" layoutY="152.0" pickOnBounds="true">
                      <image>
                         <Image url="@image/Concert_2.jpg" />
                      </image>
@@ -119,13 +118,13 @@
                         <Insets bottom="8.0" left="32.0" right="32.0" top="8.0" />
                      </padding>
                   </Button>
-                  <TextField layoutX="128.0" layoutY="488.0" prefHeight="48.0" prefWidth="768.0" promptText="Search for your concerts" />
+                  <TextField fx:id="searchField" layoutX="128.0" layoutY="488.0" prefHeight="48.0" prefWidth="768.0" promptText="Search for your concerts" />
                   <AnchorPane prefHeight="10.0" prefWidth="1024.0">
                      <children>
                         <Separator prefWidth="1024.0" />
                      </children>
                   </AnchorPane>
-                  <Button layoutX="788.0" layoutY="492.0" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: blue;" text="Search" textFill="WHITE">
+                  <Button layoutX="788.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleSearchAction" prefHeight="40.0" style="-fx-background-color: blue;" text="Search" textFill="WHITE">
                      <padding>
                         <Insets left="24.0" right="24.0" />
                      </padding>
@@ -133,74 +132,24 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <AnchorPane layoutX="64.0" layoutY="593.0" prefHeight="760.0" prefWidth="896.0" style="-fx-background-color: white;">
+                  <GridPane fx:id="gridPane" layoutX="66.0" layoutY="596.0" prefHeight="536.0" prefWidth="893.0" style="-fx-background-color: white;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="613.0" minWidth="10.0" prefWidth="335.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="0.0" prefWidth="445.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="221.0" minHeight="10.0" prefHeight="221.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="256.0" minHeight="10.0" prefHeight="231.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Label layoutX="343.0" layoutY="14.0" text="Upcoming Concerts">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Pane layoutX="55.0" layoutY="81.0" prefHeight="304.0" prefWidth="384.0">
-                           <children>
-                              <ImageView fitHeight="256.0" fitWidth="384.0" layoutX="21.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 15, 0, 0, 0);;">
-                                 <image>
-                                    <Image url="@image/436%20326_1.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="24.0" layoutY="271.0" text="Esplanade Presents | Mosaic Music SeriesVansire (USA)">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Pane layoutX="457.0" layoutY="81.0" prefHeight="304.0" prefWidth="384.0">
-                           <children>
-                              <ImageView fitHeight="256.0" fitWidth="384.0" layoutX="21.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 15, 0, 0, 0);;">
-                                 <image>
-                                    <Image url="@image/436x326%20TRO.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="24.0" layoutY="271.0" prefHeight="20.0" prefWidth="339.0" text="Esplanade Presents | Mosaic Music SeriesThe Rare Occasions (USA)">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Pane layoutX="55.0" layoutY="415.0" prefHeight="304.0" prefWidth="384.0">
-                           <children>
-                              <ImageView fitHeight="256.0" fitWidth="384.0" layoutX="21.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 15, 0, 0, 0);;">
-                                 <image>
-                                    <Image url="@image/JessieM%20_SISTIC_436X326.jpg" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="54.0" layoutY="272.0" text="Jessie M. Dark Stories - The Debut Recital [G]">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Pane layoutX="457.0" layoutY="415.0" prefHeight="304.0" prefWidth="384.0">
-                           <children>
-                              <ImageView fitHeight="256.0" fitWidth="384.0" layoutX="21.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 15, 0, 0, 0);;">
-                                 <image>
-                                    <Image url="@image/rach0324%20-%20436x326.jpg" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="55.0" layoutY="271.0" text="Rachmaninov's 24 Preludes • Andrey Gugnin">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
+                        <Label fx:id="eventNameLabel" text="Label" />
+                        <Label fx:id="eventDescLabel" text="Label" />
                      </children>
-                  </AnchorPane>
+                  </GridPane>
                </children>
             </AnchorPane>
          </content>
       </ScrollPane>
-   </center>
+   </right>
 </BorderPane>

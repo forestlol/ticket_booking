@@ -36,8 +36,8 @@ public class AccountService {
     }
 
     // Create user
-    public boolean createUser(String email, String password, String name, String type, double accountBalance) {
-        return this.databaseService.createUser(email, password, name, type, accountBalance);
+    public boolean createUser(String email, String password, String name, String type) {
+        return this.databaseService.createUser(email, password, name, type);
     }
 
     // Add authorised officers [Event Manager]
