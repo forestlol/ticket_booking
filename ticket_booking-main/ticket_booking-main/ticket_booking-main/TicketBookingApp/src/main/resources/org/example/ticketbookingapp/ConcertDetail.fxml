@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="990.0" prefWidth="1039.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ticketbookingapp.ConcertDetailController">
+   <center>
+      <AnchorPane prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <ScrollPane fitToWidth="true" minViewportHeight="768.0" minViewportWidth="1024.0" prefHeight="1516.0" prefWidth="1024.0" snapToPixel="false" style="-fx-background-color: black;">
+               <content>
+                  <AnchorPane prefHeight="1536.0" prefWidth="1024.0" style="-fx-background-color: black;">
+                     <children>
+                        <ImageView fitHeight="472.0" fitWidth="1000.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@image/Concert_2.jpg" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                        <Label fx:id="labelEventName" layoutX="59.0" layoutY="327.0" text="EventName" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelEventDesc" layoutX="58.0" layoutY="541.0" text="Desc" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <AnchorPane prefHeight="10.0" prefWidth="1024.0">
+                           <children>
+                              <Separator prefWidth="1024.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="58.0" layoutY="496.0" text="EVENT DETAILS" textFill="WHITE" underline="true">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelStartTime" layoutX="58.0" layoutY="393.0" text="Date &amp; Venue" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Text layoutX="66.0" layoutY="707.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="22.13671875" />
+                        <Label layoutX="55.0" layoutY="653.0" text="TICKET PRICING" textFill="WHITE" underline="true">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="purchaseTicketButton" layoutX="803.0" layoutY="797.0" mnemonicParsing="false" onAction="#handlePurchaseTicketAction" style="-fx-background-color: null; -fx-border-color: white;" text="Purchase Ticket" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="labelCurrSlots" layoutX="58.0" layoutY="697.0" text="currentSlot" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelCancellationFee" layoutX="58.0" layoutY="784.0" text="CancellationFee" textFill="RED">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelTotalSlots" layoutX="60.0" layoutY="741.0" text="totalSlot" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelDuration" layoutX="58.0" layoutY="577.0" text="Duration" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelRevenue" layoutX="58.0" layoutY="613.0" text="Revenue" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <AnchorPane prefWidth="1024.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="25.0" layoutY="31.0" text="Ticket Booking App" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="250.0" layoutY="1.0" prefHeight="96.0" prefWidth="768.0">
+               <children>
+                  <Label layoutX="110.0" layoutY="35.0" onMouseClicked="#handleConcertsLabelClick" text="Concerts" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Label>
+                  <Label layoutX="231.0" layoutY="35.0" text="Check Bookings" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Label>
+                  <Label layoutX="415.0" layoutY="35.0" text="Profile" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Label>
+                  <Button fx:id="logoutButton" layoutX="648.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleLogoutAction" style="-fx-border-width: 2; -fx-background-color: #000000; -fx-border-color: #FFFFFF; -fx-border-radius: 8;" text="Log Out" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
