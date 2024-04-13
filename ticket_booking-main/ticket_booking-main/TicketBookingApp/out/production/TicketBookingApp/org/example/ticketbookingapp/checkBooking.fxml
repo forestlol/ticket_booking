@@ -38,7 +38,7 @@
                         </Label>
                         <ListView fx:id="bookingListView" layoutX="47.0" layoutY="105.0" prefHeight="409.0" prefWidth="943.0" />
                         <ListView fx:id="refundListView" layoutX="48.0" layoutY="586.0" prefHeight="409.0" prefWidth="943.0" />
-                        <Label fx:id="labelStartTime11" layoutX="452.0" layoutY="538.0" text="My Refunds" textFill="WHITE">
+                        <Label fx:id="labelStartTime11" layoutX="452.0" layoutY="538.0" text="My History" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>

@@ -4,6 +4,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import data.Booking;
@@ -890,7 +891,7 @@ public class DatabaseService {
             conn = this.connection;
             conn.setAutoCommit(false); // Begin transaction
             // Calculate amount paid and check if enough balance
-            amountPaid = calculateAmountPaidAndUpdateSlots(conn, eventID, ticketOptionID, numOfTickets);
+            amountPaid = calculateAmountPaid(eventID, ticketOptionID, numOfTickets);
 
         } catch (SQLException e) {
             if (conn != null) {
@@ -915,6 +916,7 @@ public class DatabaseService {
 
 
     public Booking createBooking(int eventID, int ticketOptionID, int customerID, int ticketingOfficerID, int numOfTickets) {
+        System.out.println("1: " + numOfTickets);
         if (numOfTickets < 1 || numOfTickets > 5) {
             throw new IllegalArgumentException("Number of tickets must be between 1 and 5.");
         }
@@ -925,17 +927,8 @@ public class DatabaseService {
             conn = this.connection;
             conn.setAutoCommit(false); // Begin transaction
 
-            double customerBalance = getCustomerBalance(customerID);
-            // Calculate amount paid and check if enough balance
-            double amountPaid = calculateAmountPaidAndUpdateSlots(conn, eventID, ticketOptionID, numOfTickets);
-
-            if (customerBalance < amountPaid) {
-                // Not enough balance, rollback and throw exception
-                this.connection.rollback();
-                throw new IllegalArgumentException("Not enough balance to complete the booking.");
-            }
-
             // Calculate amount paid and update event slots and ticket option availability
+            double amountPaid = calculateAmountPaidAndUpdateSlots(conn, eventID, ticketOptionID, numOfTickets);
             if (!updateCustomerBalance(customerID, amountPaid)) {
                 conn.rollback();
                 return null;
@@ -953,9 +946,9 @@ public class DatabaseService {
             // Send Email Notification
             EmailService emailService = new EmailService();
             String basePath = System.getProperty("user.dir"); // System base path
-            String pdfFilePath = basePath + "/src/image/ticket.pdf"; // Assuming PDF is pre-generated at this location
+            String pdfFilePath = "/image/ticket.pdf"; // Assuming PDF is pre-generated at this location
 
-            String qrCodeFilePath = basePath + "/src/image/qrcode.png"; // Assuming QR code is pre-generated at this location
+            String qrCodeFilePath = "/image/qrcode.png"; // Assuming QR code is pre-generated at this location
 
 
 
@@ -1120,6 +1113,7 @@ public class DatabaseService {
 
     // Check if event's current slot is more than number of tickets, add revenue with amount paid based on basePrice and priceMultiplier, and update current slots to minus off number of tickets
     private double calculateAmountPaidAndUpdateSlots(Connection conn, int eventID, int ticketOptionID, int numOfTickets) throws SQLException {
+        System.out.println("2: " + numOfTickets);
         double amountPaid = -1;
         String eventQuery = "SELECT basePrice, currSlots FROM Event WHERE eventID = ? FOR UPDATE";
         String ticketOptionQuery = "SELECT priceMultiplier, totalAvailable FROM TicketOption WHERE ticketOptionID = ? FOR UPDATE";
@@ -1380,15 +1374,14 @@ public class DatabaseService {
     }
 
     public boolean cancelBooking(int bookingID, int userID) {
-
         try {
             // Start transaction
             this.connection.setAutoCommit(false);
 
-            // Step 1: Retrieve eventID and ticketOptionID from booking to get cancellation fee and number of tickets
-            String bookingQuery = "SELECT eventID, ticketOptionID, numOfTickets FROM Booking WHERE bookingID = ? AND customerID = ?";
+            // Step 1: Retrieve eventID, ticketOptionID, number of tickets, and event start time
+            String bookingQuery = "SELECT b.eventID, ticketOptionID, numOfTickets, e.startTime FROM Booking b JOIN Event e ON b.eventID = e.eventID WHERE bookingID = ? AND customerID = ?";
             int eventID, ticketOptionID, numOfTickets;
-            double cancellationFee;
+            Timestamp eventStartTime;
             try (PreparedStatement pstmtBooking = this.connection.prepareStatement(bookingQuery)) {
                 pstmtBooking.setInt(1, bookingID);
                 pstmtBooking.setInt(2, userID);
@@ -1397,15 +1390,23 @@ public class DatabaseService {
                     eventID = rsBooking.getInt("eventID");
                     ticketOptionID = rsBooking.getInt("ticketOptionID");
                     numOfTickets = rsBooking.getInt("numOfTickets");
+                    eventStartTime = rsBooking.getTimestamp("startTime");
+
+                    // Check if the event starts within the next 48 hours
+                    long hoursBeforeEvent = ChronoUnit.HOURS.between(LocalDateTime.now(), eventStartTime.toLocalDateTime());
+                    if (hoursBeforeEvent < 48) {
+                        this.connection.rollback();
+                        return false; // Event starts within 48 hours, cancellation not allowed
+                    }
                 } else {
                     this.connection.rollback();
                     return false; // Booking not found or does not belong to the user
                 }
             }
 
-            // Step 2: Retrieve cancellation fee and base price from Event, and price multiplier from TicketOption
+            // Step 2: Retrieve cancellation fee and calculate refund amount
             String eventQuery = "SELECT e.ticketCancellationFee, e.basePrice, t.priceMultiplier FROM Event e JOIN TicketOption t ON e.eventID = t.eventID WHERE e.eventID = ? AND t.ticketOptionID = ?";
-            double basePrice, priceMultiplier;
+            double cancellationFee, basePrice, priceMultiplier, refundAmount;
             try (PreparedStatement pstmtEvent = this.connection.prepareStatement(eventQuery)) {
                 pstmtEvent.setInt(1, eventID);
                 pstmtEvent.setInt(2, ticketOptionID);
@@ -1414,14 +1415,13 @@ public class DatabaseService {
                     cancellationFee = rsEvent.getDouble("ticketCancellationFee");
                     basePrice = rsEvent.getDouble("basePrice");
                     priceMultiplier = rsEvent.getDouble("priceMultiplier");
+                    double ticketPrice = basePrice * priceMultiplier;
+                    refundAmount = (ticketPrice - cancellationFee) * numOfTickets;
                 } else {
                     this.connection.rollback();
                     return false; // Event or TicketOption not found
                 }
             }
-
-            double ticketPrice = basePrice * priceMultiplier;
-            double refundAmount = (ticketPrice - cancellationFee) * numOfTickets;
 
             // Step 3: Update customer's account balance
             String updateCustomerQuery = "UPDATE Customer SET accountBalance = accountBalance + ? WHERE userID = ?";
@@ -1431,7 +1431,7 @@ public class DatabaseService {
                 pstmtUpdateCustomer.executeUpdate();
             }
 
-            // Step 4: Add back current slots in the event
+            // Step 4: Update available slots and ticket options
             String updateEventSlotsQuery = "UPDATE Event SET currSlots = currSlots + ? WHERE eventID = ?";
             try (PreparedStatement pstmtUpdateEventSlots = this.connection.prepareStatement(updateEventSlotsQuery)) {
                 pstmtUpdateEventSlots.setInt(1, numOfTickets);
@@ -1439,13 +1439,12 @@ public class DatabaseService {
                 pstmtUpdateEventSlots.executeUpdate();
             }
 
-            String updateTicketOptionSlotsQuery = "UPDATE ticketoption SET totalAvailable = totalAvailable + ? WHERE ticketOptionID = ?";
+            String updateTicketOptionSlotsQuery = "UPDATE TicketOption SET totalAvailable = totalAvailable + ? WHERE ticketOptionID = ?";
             try (PreparedStatement pstmtUpdateTicketOptionSlots = this.connection.prepareStatement(updateTicketOptionSlotsQuery)) {
                 pstmtUpdateTicketOptionSlots.setInt(1, numOfTickets);
                 pstmtUpdateTicketOptionSlots.setInt(2, ticketOptionID);
                 pstmtUpdateTicketOptionSlots.executeUpdate();
             }
-
 
             // Step 5: Create Refund entry
             String insertRefundQuery = "INSERT INTO Refund (bookingID, refundDate, refundStatus) VALUES (?, NOW(), 'Processed')";
@@ -1468,7 +1467,6 @@ public class DatabaseService {
                 pstmtCancelBooking.setInt(1, bookingID);
                 pstmtCancelBooking.executeUpdate();
             }
-
 
             // Commit transaction
             this.connection.commit();

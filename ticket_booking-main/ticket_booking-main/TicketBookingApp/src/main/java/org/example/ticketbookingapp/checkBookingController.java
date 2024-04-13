@@ -1,5 +1,6 @@
 package org.example.ticketbookingapp;
 
+import data.Event;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -18,6 +19,8 @@ import service.EventService;
 import user.Customer;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import service.DatabaseService;
 import data.Booking;
@@ -141,7 +144,20 @@ public class checkBookingController {
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
-            RefundService refundService = new RefundService(databaseService);
+            // First, check if the booking can be cancelled (must be more than 48 hours before the event)
+            Event event = databaseService.getEvent(booking.getEventID());
+            LocalDateTime eventStartTime = event.getStartTime();
+
+            System.out.println(ChronoUnit.HOURS.between(LocalDateTime.now(), eventStartTime));
+            long hoursBeforeEvent = ChronoUnit.HOURS.between(LocalDateTime.now(), eventStartTime);
+
+            if (hoursBeforeEvent < 48) {
+                // Inform user that the cancellation is not allowed as it's within 48 hours of the event start time
+                new Alert(Alert.AlertType.ERROR, "Refund failed: Event starts within 48 hours and cannot be cancelled.").show();
+                return; // Exit the method
+            }
+
+            // Proceed with the refund if the time condition is met
             boolean refundSuccessful = databaseService.cancelBooking(booking.getBookingID(), booking.getCustomerID());
 
             if (refundSuccessful) {
@@ -158,6 +174,7 @@ public class checkBookingController {
             }
         }
     }
+
 
 
 

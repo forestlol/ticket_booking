@@ -22,9 +22,11 @@ import user.Customer;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.time.LocalDateTime;
 
 public class CheckOutPageController {
 
@@ -223,6 +225,16 @@ public class CheckOutPageController {
         int currentUserId = accountService.getCurrentUserID();
         double totalPrice = 0;
 
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime eventStartTime = currentEvent.getStartTime();
+        LocalDateTime sixMonthsAhead = now.plusMonths(6);
+        LocalDateTime twentyFourHoursBefore = eventStartTime.minusHours(24);
+        // Check if the event is too far in the future or too close to the start time
+        if (eventStartTime.isAfter(sixMonthsAhead) || twentyFourHoursBefore.isBefore(now)) {
+            showAlert("Booking Error", "Booking can only be made up to 6 months in advance and no later than 24 hours before the event start time.");
+            return;
+        }
+
         if (carts.isEmpty()) {
             showAlert("Cannot Checkout", "Your cart is empty. Please add tickets before checking out.");
             return;
@@ -233,38 +245,36 @@ public class CheckOutPageController {
 
             if (ticketOptionID != -1) {
                 totalPrice += bookingService.ReturnTicketPrice(currentEvent.getEventID(), ticketOptionID, item.quantity);
-
             } else {
                 throw new IllegalStateException("Ticket Option ID not found for category: " + item.category);
             }
         }
 
         if (totalPrice > bookingService.getCustomerBalance(currentUserId)) {
-            // Booking failed due to insufficient balance or other reasons.
-            //throw new IllegalStateException("Booking could not be created. Please ensure you have sufficient balance and try again.");
-            showAlert("Insufficient Balance", "Booking could not be created. Please ensure you have sufficient balance and try again. \nYour balance is $" + String.format("%.2f", totalPrice));
-        }else{
-            for (CartItem item: carts)
-            {
-                int ticketOptionID = ticketService.getTicketOptionIDByName(currentEvent.getEventID(), item.category);
-                bookingService.createBooking(currentEvent.getEventID(), ticketOptionID, AccountService.getCurrentUser().getID(), item.quantity);
-            }
-            navigateToThankYouPage(event);
+            showAlert("Insufficient Balance", "Booking could not be created. Please ensure you have sufficient balance and try again. Your balance is $" + String.format("%.2f", bookingService.getCustomerBalance(currentUserId)));
+            return;
         }
 
-
-
-        /*catch (IllegalArgumentException e) {
-            showAlert("Booking Error", e.getMessage());
-        } catch (Exception e) {
-            Throwable cause = e.getCause();
-            if (cause instanceof IllegalArgumentException) {
-                showAlert("Booking Error", cause.getMessage());
-            } else {
-                showAlert("Unexpected Error", "An unexpected error occurred. Please try again.");
-                e.printStackTrace(); // For debugging purposes
+        try {
+            for (CartItem item : carts) {
+                int ticketOptionID = ticketService.getTicketOptionIDByName(currentEvent.getEventID(), item.category);
+                if (ticketOptionID != -1) {
+                    Booking result = bookingService.createBooking(currentEvent.getEventID(), ticketOptionID, AccountService.getCurrentUser().getID(), item.quantity);
+                    if (result != null) {
+                        System.out.println("Booking created successfully: " + result);
+                    } else {
+                        System.out.println("Booking creation failed.");
+                    }
+                } else {
+                    System.out.println("Ticket Option ID not found for category: " + item.category);
+                }
             }
-        }*/
+            navigateToThankYouPage(event);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error during booking: " + e.getMessage());
+            // Handle error (e.g., show error message)
+        }
     }
 
     private void showAlert(String title, String content) {
