@@ -5,7 +5,157 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fc37912-1302-4090-9ac6-7e0b13f2491b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TicketBookingApp/src/main/java/service/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/artifacts/TicketBookingApp_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/dependency-reduced-pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/CheckoutPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/ConcertDetail.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/MainMenu.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/adminPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/checkBooking.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/createEventDialog.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/editEventDialog.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/image/436.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/image/436x326.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/image/Concert.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/image/Concert_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/image/Jessie.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/image/qrcode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/image/rach.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/image/space0324_436x326.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/image/ticket.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/registration-success.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/thankyouPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/org/example/ticketbookingapp/ticketingOfficerPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/sql/create_tables.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/out/production/TicketBookingApp/sql/insert_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/output/Event_1_Data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/output/Event_2_Data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/data/Booking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/data/Event.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/data/Refund.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/data/Ticket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/data/TicketOption.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/AdminController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/BookingApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/CheckOutPageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/ConcertDetailController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/CreateEventDialogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/EditEventDialogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/MainMenuController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/checkBookingController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/profileController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/thankyouPageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/ticketingOfficerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/AccountService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/BookingService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/DatabaseService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/EmailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/EventService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/PdfService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/RefundService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/StatisticsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/TicketService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/user/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/user/EventManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/user/TicketingOfficer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/user/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/CheckoutPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/ConcertDetail.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/MainMenu.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/adminPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/checkBooking.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/createEventDialog.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/editEventDialog.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/436.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/436x326.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/Concert.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/Concert_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/Jessie.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/qrcode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/rach.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/space0324_436x326.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/ticket.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/registration-success.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/thankyouPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/ticketingOfficerPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/sql/create_tables.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/sql/insert_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/image/Concert.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/image/qrcode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/image/ticket.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/data/Booking.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/data/Event.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/data/Refund.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/data/Ticket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/data/TicketOption.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/BookingApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/CheckOutPageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/ConcertDetailController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/MainMenuController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/org/example/ticketbookingapp/thankyouPageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/AccountService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/BookingService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/DatabaseService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/EmailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/EventService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/PdfService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/RefundService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/StatisticsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/service/TicketService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/user/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/user/EventManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/user/TicketingOfficer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/java/user/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/CheckoutPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/ConcertDetail.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/MainMenu.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/436.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/436x326.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/Concert.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/Concert_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/Jessie.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/rach.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/image/space0324_436x326.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/registration-success.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/org/example/ticketbookingapp/thankyouPage.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/sql/create_tables.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ticket_booking-main/ticket_booking-main/ticket_booking-main/TicketBookingApp/src/main/resources/sql/insert_data.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +179,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/nelso/Desktop/SMU/Year 3 Sem 2/Object Oriented Programming/Group Project/IS442_GrpProj/TicketBookingApp",
+    "last_opened_file_path": "C:/Users/nelso/Desktop/SMU/Year 3 Sem 2/Object Oriented Programming/Group Project/IS442_GrpProj/ticket_booking-main/TicketBookingApp",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -38,6 +188,21 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="IS442_GrpProj" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="IS442_GrpProj" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -48,6 +213,8 @@
       <updated>1711686530653</updated>
       <workItem from="1711686534298" duration="23339000" />
       <workItem from="1711720503971" duration="2302000" />
+      <workItem from="1713009331674" duration="32000" />
+      <workItem from="1713010496417" duration="189000" />
     </task>
     <servers />
   </component>
