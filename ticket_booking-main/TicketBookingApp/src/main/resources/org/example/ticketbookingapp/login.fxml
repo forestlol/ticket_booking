@@ -23,7 +23,7 @@
          </children>
       </AnchorPane>
    </left>
-   <right>
+   <center>
       <AnchorPane prefHeight="768.0" prefWidth="512.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="usernameField" layoutX="178.0" layoutY="352.0" prefColumnCount="18" prefHeight="32.0" prefWidth="256.0" />
@@ -46,7 +46,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label layoutX="51.0" layoutY="117.0" text="Ticket Booking App" textFill="WHITE">
+            <Label layoutX="197.0" layoutY="198.0" text="TICKS" textFill="WHITE">
                <font>
                   <Font name="Stencil" size="40.0" />
                </font>
@@ -61,7 +61,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <ImageView fitHeight="137.0" fitWidth="139.0" layoutX="186.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/white_ticks-removebg.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-   </right>
+   </center>
 </BorderPane>

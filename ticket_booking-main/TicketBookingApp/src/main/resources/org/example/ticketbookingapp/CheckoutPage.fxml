@@ -127,11 +127,6 @@
    <top>
       <AnchorPane prefWidth="1024.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="25.0" layoutY="31.0" text="Ticket Booking App" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
             <AnchorPane layoutX="250.0" layoutY="1.0" prefHeight="96.0" prefWidth="768.0">
                <children>
                   <Label layoutX="110.0" layoutY="35.0" onMouseClicked="#handleConcertsLabelClick" text="Concerts" textFill="WHITE">
@@ -168,6 +163,16 @@
                   </Label>
                </children>
             </AnchorPane>
+            <Label layoutX="92.0" layoutY="25.0" text="Ticks" textFill="WHITE">
+               <font>
+                  <Font name="Stencil" size="40.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="75.0" fitWidth="78.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/white_ticks-removebg.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </top>
