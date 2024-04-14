@@ -815,28 +815,32 @@ public class DatabaseService {
         return ticketOptions;
     }
 
-    public boolean verifyTicket(int ticketID) {
+    public boolean verifyTicket(int ticketID, int officerID) {
         // Queries
-        String ticketQuery = "SELECT t.bookingID FROM Ticket t WHERE t.ticketID = ? AND t.attended = 0";
-        String updateTicketQuery = "UPDATE Ticket SET attended = 1 WHERE bookingID = ?";
-        String updateBookingQuery = "UPDATE Booking SET bookingStatus = 'Verified' WHERE bookingID = ?";
-
         try {
-            this.connection.setAutoCommit(false); // Begin transaction
+            this.connection.setAutoCommit(false);
 
+            // Check if the ticket is available to be verified and not cancelled
+            String ticketQuery = "SELECT t.bookingID FROM Ticket t " +
+                    "INNER JOIN Booking b ON t.bookingID = b.bookingID " +
+                    "INNER JOIN AuthorisedOfficers a ON b.eventID = a.eventID " +
+                    "WHERE t.ticketID = ? AND t.attended = 0 AND b.bookingStatus != 'Cancelled' " +
+                    "AND a.ticketingOfficerID = ? FOR UPDATE";
             int bookingID = 0;
-
-            // Fetch the bookingID using ticketID
             try (PreparedStatement pstmt = this.connection.prepareStatement(ticketQuery)) {
                 pstmt.setInt(1, ticketID);
+                pstmt.setInt(2, officerID);
                 ResultSet rs = pstmt.executeQuery();
-                if (!rs.next()) {
-                    this.connection.rollback(); // Nothing to update, rollback
+                if (rs.next()) {
+                    bookingID = rs.getInt("bookingID");
+                } else {
+                    this.connection.rollback(); // Ticket not found, or already attended, or booking is cancelled
                     return false;
                 }
-                bookingID = rs.getInt("bookingID"); // Retrieve the bookingID
             }
 
+            // Update Ticket to mark as attendedString updateTicketQuery = "UPDATE Ticket SET attended = 1 WHERE bookingID = ?";
+            String updateTicketQuery = "UPDATE Ticket SET attended = 1 WHERE bookingID = ?";
             // Update all Tickets related to the bookingID to mark as attended
             try (PreparedStatement updatePstmt = this.connection.prepareStatement(updateTicketQuery)) {
                 updatePstmt.setInt(1, bookingID);
@@ -847,21 +851,23 @@ public class DatabaseService {
                 }
             }
 
-            // Update the Booking to mark as verified
+            // Update Booking to mark as verified
+            String updateBookingQuery = "UPDATE Booking SET bookingStatus = 'Verified' WHERE bookingID = ?";
             try (PreparedStatement updatePstmt = this.connection.prepareStatement(updateBookingQuery)) {
                 updatePstmt.setInt(1, bookingID);
                 int updatedRows = updatePstmt.executeUpdate();
                 if (updatedRows == 0) {
-                    this.connection.rollback();
+                    this.connection.rollback(); // No booking updated
                     return false;
                 }
             }
 
-            this.connection.commit(); // Both updates were successful, commit the transaction
+            // Commit transaction if all updates are successful
+            this.connection.commit();
             return true;
         } catch (SQLException e) {
             try {
-                this.connection.rollback(); // Rollback in case of any failure
+                this.connection.rollback(); // Rollback on exception
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -869,7 +875,7 @@ public class DatabaseService {
         } finally {
             try {
                 if (this.connection != null) {
-                    this.connection.setAutoCommit(true); // Reset auto-commit to true
+                    this.connection.setAutoCommit(true); // Reset auto-commit
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -1094,11 +1100,11 @@ public class DatabaseService {
         try (PreparedStatement pstmt = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             for (int i = 0; i < numOfTickets; i++) {
                 pstmt.setInt(1, bookingID);
-                pstmt.setBoolean(2, false); // Assuming not a guest ticket
+                pstmt.setBoolean(2, i != 0);  // Assuming not a guest ticket
                 pstmt.executeUpdate();
                 try (ResultSet rs = pstmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        tickets.add(new Ticket(rs.getInt(1), bookingID, false, false));
+                        tickets.add(new Ticket(rs.getInt(1), bookingID, i != 0, false));
                     }
                 }
             }

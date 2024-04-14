@@ -62,8 +62,10 @@ public class ticketingOfficerController {
             // Retrieve the ticket ID entered by the user
             int ticketID = Integer.parseInt(ticketIDfield.getText().trim());
 
+            // Get the logged-in TicketingOfficer's ID
+            int officerID = AccountService.getCurrentUser().getID(); // ticketingOfficer should be your TicketingOfficer instance
             // Call the verifyTicket method from the TicketService
-            boolean isVerified = ticketService.verifyTicket(ticketID);
+            boolean isVerified = ticketService.verifyTicket(ticketID, officerID);
 
             // Show the result in an alert dialog
             showAlert(isVerified ? "Ticket Verification" : "Verification Failed",

@@ -137,6 +137,7 @@ public class LoginController {
 
         //remove spaces in name
         name = name.trim();
+        type = type.replace(" ", "");
 
         // Use accountService to perform login
         if (accountService.createUser(email,password,name,type)) {

@@ -66,26 +66,23 @@ public class MainMenuController {
 
     public void populateEventGrid(List<Event> events) {
         gridPane.getChildren().clear();
-        gridPane.setHgap(10); // Set horizontal gap between columns
-        gridPane.setVgap(10); // Set vertical gap between rows
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm");
-
-        // Assuming you want two columns:
-        int columns = 2;
+        gridPane.getRowConstraints().clear();
         gridPane.getColumnConstraints().clear();
+
+        int columns = 2; // We want 2 columns
         for (int i = 0; i < columns; i++) {
             ColumnConstraints columnConstraints = new ColumnConstraints();
-            columnConstraints.setHgrow(Priority.ALWAYS); // Allow column to grow
-            columnConstraints.setFillWidth(true); // Make the column take up as much space as possible
+            columnConstraints.setPercentWidth(50); // Each column takes up 50% of the width
             gridPane.getColumnConstraints().add(columnConstraints);
         }
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm");
+
         for (int i = 0; i < events.size(); i++) {
             Event event = events.get(i);
-            VBox eventContainer = new VBox(5); // 5 is the spacing between elements
-            eventContainer.setPadding(new Insets(10)); // Padding around the VBox
-            eventContainer.setStyle("-fx-border-color: lightgrey; -fx-border-width: 1; -fx-background-color: white;");
+            VBox eventBox = new VBox(5); // 5 is the spacing between elements
+            eventBox.setPadding(new Insets(10)); // Padding around the VBox
+            eventBox.setStyle("-fx-border-color: lightgrey; -fx-border-width: 1; -fx-background-color: white;");
 
             Label eventNameLabel = new Label(event.getEventName());
             eventNameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
@@ -98,29 +95,33 @@ public class MainMenuController {
             Label venueLabel = new Label("Venue: " + event.getVenue());
             venueLabel.setWrapText(true);
 
-            // Change to "Event Date and Time:"
             Label startTimeLabel = new Label("Event Date and Time: " + event.getStartTime().format(formatter));
             startTimeLabel.setWrapText(true);
 
             Label durationLabel = new Label("Duration: " + event.getDuration() + " minutes");
             durationLabel.setWrapText(true);
 
-            // Create a button for viewing event details
             Button detailsButton = new Button("View Details");
             detailsButton.setOnAction(e -> showEventDetails(event));
             detailsButton.setMaxWidth(Double.MAX_VALUE); // Make the button grow to VBox width
 
             // Add all the labels and the button to the VBox
-            eventContainer.getChildren().addAll(eventNameLabel, eventDescLabel, venueLabel, startTimeLabel, durationLabel, detailsButton);
+            eventBox.getChildren().addAll(eventNameLabel, eventDescLabel, venueLabel, startTimeLabel, durationLabel, detailsButton);
 
             // Calculate row and column for placement in the grid
-            int row = i / columns; // Determines the row index
-            int column = i % columns; // Determines the column index
+            int columnIndex = i % columns; // Determines the column index
+            int rowIndex = i / columns; // Determines the row index
 
             // Add the event container to the GridPane
-            gridPane.add(eventContainer, column, row);
-            GridPane.setMargin(eventContainer, new Insets(5)); // Margin around the VBox in the GridPane cell
-            GridPane.setVgrow(eventContainer, Priority.ALWAYS); // Allow VBox to grow vertically
+            gridPane.add(eventBox, columnIndex, rowIndex);
+            GridPane.setMargin(eventBox, new Insets(10)); // Margin around the VBox for spacing
+            GridPane.setVgrow(eventBox, Priority.ALWAYS); // Allow VBox to grow vertically
+            GridPane.setHgrow(eventBox, Priority.ALWAYS); // Allow VBox to grow horizontally
+        }
+
+        // If the number of events is odd, add an empty VBox to balance the last row
+        if (events.size() % columns != 0) {
+            gridPane.add(new VBox(), 1, events.size() / columns);
         }
     }
 

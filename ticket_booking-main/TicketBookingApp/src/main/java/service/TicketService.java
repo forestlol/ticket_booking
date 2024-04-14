@@ -51,8 +51,8 @@ public class TicketService {
     }
 
     // Verify a ticket with current date being the same as event date
-    public boolean verifyTicket(int ticketID) {
-        return this.databaseService.verifyTicket(ticketID);
+    public boolean verifyTicket(int ticketID, int officerID) {
+        return this.databaseService.verifyTicket(ticketID, officerID);
     }
 
     // This method retrieves a mapping of ticket categories to their available counts

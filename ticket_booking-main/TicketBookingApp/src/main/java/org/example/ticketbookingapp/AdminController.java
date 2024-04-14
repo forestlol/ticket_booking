@@ -164,7 +164,11 @@ public class AdminController {
                         });
                         deleteButton.setOnAction((ActionEvent event) -> {
                             Event eventData = getTableView().getItems().get(getIndex());
-                            handleDeleteAction(eventData);
+                            try {
+                                handleDeleteAction(eventData);
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
                         });
                         exportButton.setOnAction(event -> {
                             Event eventData = getTableView().getItems().get(getIndex());
@@ -264,12 +268,16 @@ public class AdminController {
 
             // Refresh the events table after the dialog is closed
             refreshEventsTable();
+            loadAuthorisedEvents();
+            loadTicketingOfficers();
         } catch (IOException e) {
             e.printStackTrace(); // Print stack trace for debugging
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    private void handleDeleteAction(Event eventData) {
+    private void handleDeleteAction(Event eventData) throws SQLException {
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationAlert.setTitle("Confirm Cancellation");
         confirmationAlert.setHeaderText(null);
@@ -281,6 +289,8 @@ public class AdminController {
             eventService.cancelEvent(eventData.getEventID());
             // Now refresh the table to reflect the cancellation
             refreshEventsTable();
+            loadAuthorisedEvents();
+            loadTicketingOfficers();
             System.out.println("Cancellation confirmed for: " + eventData.getEventName());
         } else {
             // User chose Cancel or closed the dialog
